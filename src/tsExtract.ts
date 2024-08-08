@@ -19,14 +19,8 @@ export const tsExtract = (opts: Config): RollupOptions[] => {
   const config = createConfig(opts);
 
   const entryFile = path.parse(config.entryFile);
+
   const outputFilePath = path.join(config.outDir, `${entryFile.name}.js`);
-
-  const entryDeclarationFilePath = path.join(
-    config.outDir,
-    entryFile.dir,
-    `${entryFile.name}.d.ts`
-  );
-
   const outputDeclarationFilePath = path.join(
     config.outDir,
     `${entryFile.name}.d.ts`
@@ -38,22 +32,25 @@ export const tsExtract = (opts: Config): RollupOptions[] => {
       treeshake: 'smallest',
       output: {
         file: outputFilePath,
-        format: 'cjs',
+        format: config.format,
         sourcemap: false
       },
       plugins: [
         dropDecorators(config.dropDecorators),
+        json(),
         // @ts-ignore
         typescript({
-          tsconfig: config.tsconfig
+          tsconfig: config.tsconfig,
+          tsconfigOverride: {
+            declaration: false
+          }
         }),
         commonjs(),
-        json(),
         tscAlias(config.tscAlias)
       ]
     },
     {
-      input: entryDeclarationFilePath,
+      input: config.entryFile,
       treeshake: 'smallest',
       output: {
         file: outputDeclarationFilePath,
@@ -61,7 +58,10 @@ export const tsExtract = (opts: Config): RollupOptions[] => {
         sourcemap: false
       },
       plugins: [
-        dts(),
+        json(),
+        dts({
+          tsconfig: config.tsconfig
+        }),
         cleanOutDir(
           [
             // index.d.ts or index.js

@@ -1,3 +1,8 @@
 declare const testFunction: () => string;
 
-export { testFunction };
+var name = "biba";
+var json = {
+	name: name
+};
+
+export { json as bibajson, testFunction };

@@ -1,5 +1,6 @@
 # Ignore artifacts:
 build
+dist
 docker
 .run
 node_modules

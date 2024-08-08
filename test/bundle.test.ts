@@ -41,6 +41,10 @@ describe('Rollup Bundle', () => {
         'utf-8'
       );
 
+      console.log(jsContent);
+
+      console.log(expectedJsContent);
+
       expect(jsContent).toEqual(expectedJsContent);
       expect(dtsContent).toEqual(expectedDtsContent);
     });
