@@ -29,9 +29,6 @@ importers:
       tsc-alias:
         specifier: ^1.8.10
         version: 1.8.10
-      tslib:
-        specifier: ^2.6.3
-        version: 2.6.3
     devDependencies:
       '@jest/types':
         specifier: ^29.6.3

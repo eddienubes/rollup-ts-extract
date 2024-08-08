@@ -1,15 +1,16 @@
 {
   "compilerOptions": {
     "experimentalDecorators": true,
-    "target": "es6",
-    "module": "commonjs",
+    "module": "ESNext",
+    "target": "ESNext",
     "lib": [
       "es6",
       "dom"
     ],
     "declaration": true,
+    "declarationMap": false,
     "allowJs": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "outDir": "build",
     "strict": true,
     "noImplicitAny": true,

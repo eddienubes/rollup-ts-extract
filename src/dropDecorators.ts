@@ -21,7 +21,7 @@ export const dropDecorators = (opts?: DropDecoratorsConfig): Plugin => {
 
   return {
     name: 'drop-decorators',
-    transform: async (id) => {
+    transform: async (code, id) => {
       // Ignore non-typescript files
       if (!id.endsWith('.ts')) {
         return;

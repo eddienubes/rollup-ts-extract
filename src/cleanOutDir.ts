@@ -11,7 +11,6 @@ export const cleanOutDir = (preserve: string[], folder: string): Plugin => {
     name: 'clean-out-dir',
     writeBundle: async () => {
       for (const file of await fs.readdir(folder, { recursive: false })) {
-        console.log('Cleaning folder: ', folder);
         if (!preserve.includes(file)) {
           await fs.rm(`${folder}/${file}`, {
             force: true,
