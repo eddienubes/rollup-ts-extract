@@ -1,0 +1,12 @@
+# Ignore artifacts:
+build
+docker
+.run
+node_modules
+.yarn
+*.json
+*.md
+sdk
+!sdk/types
+.tsup
+pnpm-lock.yaml
