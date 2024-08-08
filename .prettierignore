@@ -10,3 +10,4 @@ sdk
 !sdk/types
 .tsup
 pnpm-lock.yaml
+test/fixtures

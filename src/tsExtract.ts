@@ -4,7 +4,7 @@ import { tscAlias } from './tscAlias';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import typescript from 'rollup-plugin-typescript2';
-import path from 'node:path';
+import path from 'path';
 import { dropDecorators } from './dropDecorators';
 import dts from 'rollup-plugin-dts';
 import { cleanOutDir } from './cleanOutDir';
