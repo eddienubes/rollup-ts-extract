@@ -3,12 +3,11 @@
   "compilerOptions": {
     "outDir": "dist",
     "moduleResolution": "Node",
-    "emitDeclarationOnly": true,
-//    "rootDir": "src",
+    "rootDir": "src",
     "module": "CommonJS",
     "target": "ES6"
   },
-//  "include": [
-//    "src/**/*.ts"
-//  ]
+  "include": [
+    "src/**/*.ts"
+  ]
 }
