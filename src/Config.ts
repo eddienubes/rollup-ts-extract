@@ -1,5 +1,5 @@
 import { DropDecoratorsConfig } from './DropDecoratorsConfig';
-import { DeepPartial, Preserve } from './types';
+import { DeepPartial } from './types';
 import { TscAliasConfig } from './TscAliasConfig';
 import { ModuleFormat } from 'rollup';
 
@@ -16,11 +16,11 @@ export interface Config {
    * Output format.
    * @default cjs
    */
-  format: ModuleFormat;
+  format?: ModuleFormat;
   /**
    * Path to the tsconfig file.
    */
-  tsconfig: string;
+  tsconfig?: string;
   /**
    * List of decorators that should not be removed.
    */
@@ -29,15 +29,15 @@ export interface Config {
   /**
    * Configuration for drop decorators plugin.
    */
-  dropDecorators?: Preserve<DropDecoratorsConfig>;
+  dropDecorators?: DropDecoratorsConfig;
 
   /**
    * Configuration for tsc alias plugin.
    */
-  tscAlias?: Preserve<TscAliasConfig>;
+  tscAlias?: TscAliasConfig;
 }
 
-export const createConfig = (config: DeepPartial<Config>): Config => {
+export const createConfig = (config: Config): Config => {
   return {
     entryFile: config.entryFile,
     outDir: config.outDir,
@@ -45,6 +45,6 @@ export const createConfig = (config: DeepPartial<Config>): Config => {
     tsconfig: config.tsconfig ?? 'tsconfig.json',
     whitelist: config.whitelist,
     dropDecorators: config.dropDecorators,
-    tscAlias: config.tscAlias,
+    tscAlias: config.tscAlias
   };
 };

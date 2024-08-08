@@ -4,15 +4,12 @@ import {
   createDropDecoratorsConfig,
   DropDecoratorsConfig
 } from './DropDecoratorsConfig';
-import { DeepPartial } from './types';
 
 /**
  * Removes typescript decorators to facilitate tree-shaking.
  * Doesn't transpile the code, so it's recommended to use this plugin before any other plugins.
  */
-export const dropDecorators = (
-  opts: DeepPartial<DropDecoratorsConfig>
-): Plugin => {
+export const dropDecorators = (opts?: DropDecoratorsConfig): Plugin => {
   const config = createDropDecoratorsConfig(opts);
 
   const proj = new Project({

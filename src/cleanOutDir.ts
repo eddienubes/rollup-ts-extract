@@ -1,4 +1,4 @@
-import * as fs from 'node:fs/promises';
+import fs from 'node:fs/promises';
 import type { Plugin } from 'rollup';
 
 /**
@@ -9,10 +9,11 @@ import type { Plugin } from 'rollup';
 export const cleanOutDir = (preserve: string[], folder: string): Plugin => {
   return {
     name: 'clean-out-dir',
-    buildEnd: async () => {
-      for await (const file of fs.glob(`${folder}/**/*`)) {
+    writeBundle: async () => {
+      for (const file of await fs.readdir(folder, { recursive: false })) {
+        console.log('Cleaning folder: ', folder);
         if (!preserve.includes(file)) {
-          await fs.rm(file, {
+          await fs.rm(`${folder}/${file}`, {
             force: true,
             recursive: true
           });

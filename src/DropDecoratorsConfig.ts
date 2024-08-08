@@ -1,23 +1,22 @@
-import { DeepPartial } from './types';
 import { Config } from './Config';
 
 export interface DropDecoratorsConfig {
   /**
    * List of decorators that should not be removed.
    */
-  whitelist: string[];
+  whitelist?: string[];
   /**
    * Path to the tsconfig file.
    */
-  tsconfig: string;
+  tsconfig?: string;
 }
 
 export const createDropDecoratorsConfig = (
-  config: DeepPartial<DropDecoratorsConfig>,
+  config?: DropDecoratorsConfig,
   topLevelConfig?: Config
 ): DropDecoratorsConfig => {
   return {
-    whitelist: config.whitelist || topLevelConfig.whitelist || [],
-    tsconfig: config.tsconfig || topLevelConfig?.tsconfig || 'tsconfig.json'
+    whitelist: config?.whitelist || topLevelConfig?.whitelist || [],
+    tsconfig: config?.tsconfig || topLevelConfig?.tsconfig || 'tsconfig.json'
   };
 };
