@@ -1,5 +1,5 @@
 import { rollup } from 'rollup';
-import { tsExtract } from '../src/tsExtract';
+import { tsExtract } from '../src/tsExtract.js';
 import path from 'node:path';
 import fs from 'node:fs/promises';
 

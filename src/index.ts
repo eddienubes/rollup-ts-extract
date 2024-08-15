@@ -1,10 +1,10 @@
-export * from './DropDecoratorsConfig';
-export * from './dropDecorators';
+export * from './DropDecoratorsConfig.js';
+export * from './dropDecorators.js';
 
-export * from './cleanOutDir';
+export * from './cleanOutDir.js';
 
-export * from './TscAliasConfig';
-export * from './tscAlias';
+export * from './TscAliasConfig.js';
+export * from './tscAlias.js';
 
-export * from './Config';
-export * from './tsExtract';
+export * from './Config.js';
+export * from './tsExtract.js';

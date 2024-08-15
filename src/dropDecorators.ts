@@ -3,7 +3,7 @@ import { Decorator, Project } from 'ts-morph';
 import {
   createDropDecoratorsConfig,
   DropDecoratorsConfig
-} from './DropDecoratorsConfig';
+} from './DropDecoratorsConfig.js';
 
 /**
  * Removes typescript decorators to facilitate tree-shaking.

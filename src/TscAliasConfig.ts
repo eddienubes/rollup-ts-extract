@@ -1,4 +1,4 @@
-import { DeepPartial } from './types';
+import { DeepPartial } from './types.js';
 
 export interface TscAliasConfig {
   /**

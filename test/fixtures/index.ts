@@ -1,6 +1,6 @@
-import { testFunction } from './fixtures';
+import { testFunction } from './fixtures.js';
 import bibajson from './json.json';
 
-export * from './otherFile';
+export * from './otherFile.js';
 
 export { testFunction, bibajson };

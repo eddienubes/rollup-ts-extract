@@ -3,6 +3,7 @@
   "version": "0.0.7",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "type": "module",
   "scripts": {
     "prebuild": "rm -rf dist",
     "prettier:fix": "prettier --write .",
@@ -31,16 +32,14 @@
   "author": "Carny Plant",
   "license": "MIT",
   "devDependencies": {
-    "@jest/types": "^29.6.3",
-    "@types/http-status-codes": "^1.2.0",
-    "@types/jest": "^29.5.12",
     "@types/node": "20.12.0",
     "http-status-codes": "^2.3.0",
-    "jest": "^29.7.0",
     "prettier": "^3.3.3",
     "rollup": "^4.20.0",
     "ts-jest": "^29.2.4",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "unplugin-swc": "^1.5.1",
+    "vitest": "^2.0.5"
   },
   "dependencies": {
     "@rollup/plugin-commonjs": "^26.0.1",
@@ -48,6 +47,7 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
     "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-node-externals": "^7.1.2",
     "rollup-plugin-typescript2": "^0.36.0",
     "ts-morph": "^23.0.0",
     "ts-node": "^10.9.2",

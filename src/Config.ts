@@ -1,6 +1,6 @@
-import { DropDecoratorsConfig } from './DropDecoratorsConfig';
-import { DeepPartial } from './types';
-import { TscAliasConfig } from './TscAliasConfig';
+import { DropDecoratorsConfig } from './DropDecoratorsConfig.js';
+import { DeepPartial } from './types.js';
+import { TscAliasConfig } from './TscAliasConfig.js';
 import { ModuleFormat } from 'rollup';
 
 export interface Config {
