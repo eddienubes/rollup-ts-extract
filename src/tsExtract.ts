@@ -2,6 +2,7 @@ import { Config, createConfig } from './Config';
 import { RollupOptions } from 'rollup';
 import { tscAlias } from './tscAlias';
 import commonjs from '@rollup/plugin-commonjs';
+import nodeResolve from '@rollup/plugin-node-resolve';
 import json from '@rollup/plugin-json';
 import typescript from 'rollup-plugin-typescript2';
 import path from 'path';
@@ -45,6 +46,7 @@ export const tsExtract = (opts: Config): RollupOptions[] => {
             declaration: false
           }
         }),
+        nodeResolve(),
         commonjs(),
         tscAlias(config.tscAlias)
       ]
@@ -60,7 +62,8 @@ export const tsExtract = (opts: Config): RollupOptions[] => {
       plugins: [
         json(),
         dts({
-          tsconfig: config.tsconfig
+          tsconfig: config.tsconfig,
+          respectExternal: true
         }),
         cleanOutDir(
           [
