@@ -9,9 +9,13 @@ describe('Rollup Bundle', () => {
       const dir = 'test/fixtures/dist';
       await fs.rm(dir, { recursive: true, force: true });
 
+      const outputPackageJson = 'test/fixtures/package.json';
+
       const config = tsExtract({
         entryFile: 'test/fixtures/index.ts',
-        outDir: dir
+        outDir: dir,
+        outputPackageJson,
+        inputPackageJson: 'package.json'
       });
 
       const jsBundle = await rollup(config[0]);
@@ -31,6 +35,7 @@ describe('Rollup Bundle', () => {
         path.join(dir, 'index.d.ts'),
         'utf-8'
       );
+      const jsonContent = await fs.readFile(outputPackageJson, 'utf-8');
 
       const expectedJsContent = await fs.readFile(
         'test/fixtures/expected.js',
@@ -40,13 +45,14 @@ describe('Rollup Bundle', () => {
         'test/fixtures/expected.d.ts',
         'utf-8'
       );
-
-      console.log(jsContent);
-
-      console.log(expectedJsContent);
+      const expectedJsonContent = await fs.readFile(
+        'test/fixtures/expected.json',
+        'utf-8'
+      );
 
       expect(jsContent).toEqual(expectedJsContent);
       expect(dtsContent).toEqual(expectedDtsContent);
+      expect(jsonContent).toEqual(expectedJsonContent);
     });
   });
 });

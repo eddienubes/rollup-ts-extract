@@ -1,3 +1,5 @@
+import path from 'path';
+
 declare const testFunction: () => string;
 
 var name = "biba";
@@ -365,6 +367,9 @@ declare enum StatusCodes {
 declare class SomeClass {
     statusCode: StatusCodes;
     name: string;
+    someVar: string;
+    pathVar: typeof path.join;
 }
+declare const instance: SomeClass;
 
-export { SomeClass, json as bibajson, testFunction };
+export { SomeClass, json as bibajson, instance, testFunction };

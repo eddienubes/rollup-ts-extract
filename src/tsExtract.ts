@@ -2,14 +2,13 @@ import { Config, createConfig } from './Config.js';
 import { RollupOptions } from 'rollup';
 import { tscAlias } from './tscAlias.js';
 import commonjs from '@rollup/plugin-commonjs';
-import nodeResolve from '@rollup/plugin-node-resolve';
 import json from '@rollup/plugin-json';
 import typescript from 'rollup-plugin-typescript2';
 import path from 'path';
 import { dropDecorators } from './dropDecorators.js';
 import dts from 'rollup-plugin-dts';
 import { cleanOutDir } from './cleanOutDir.js';
-import { nodeExternals } from 'rollup-plugin-node-externals';
+import { includeExternalDeps } from './externalizeDeps';
 
 /**
  * Bundles typescript source project into a single file with types.
@@ -22,10 +21,10 @@ export const tsExtract = (opts: Config): RollupOptions[] => {
 
   const entryFile = path.parse(config.entryFile);
 
-  const outputFilePath = path.join(config.outDir, `${ entryFile.name }.js`);
+  const outputFilePath = path.join(config.outDir, `${entryFile.name}.js`);
   const outputDeclarationFilePath = path.join(
     config.outDir,
-    `${ entryFile.name }.d.ts`
+    `${entryFile.name}.d.ts`
   );
 
   return [
@@ -48,12 +47,6 @@ export const tsExtract = (opts: Config): RollupOptions[] => {
             declaration: false
           }
         }),
-        // nodeResolve(),
-        nodeExternals({
-          builtins: true,
-          deps: false,
-          devDeps: true
-        }),
         // @ts-ignore
         commonjs({}),
         tscAlias(config.tscAlias)
@@ -70,11 +63,6 @@ export const tsExtract = (opts: Config): RollupOptions[] => {
       plugins: [
         // @ts-ignore
         json(),
-        nodeExternals({
-          builtins: true,
-          deps: false,
-          devDeps: true
-        }),
         dts({
           tsconfig: config.tsconfig,
           respectExternal: true
@@ -86,7 +74,11 @@ export const tsExtract = (opts: Config): RollupOptions[] => {
             path.basename(outputFilePath)
           ],
           config.outDir
-        )
+        ),
+        includeExternalDeps({
+          inputPackageJson: config.inputPackageJson as string,
+          outputPackageJson: config.outputPackageJson as string
+        })
       ]
     }
   ];

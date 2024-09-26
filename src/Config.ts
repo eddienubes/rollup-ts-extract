@@ -27,6 +27,18 @@ export interface Config {
   whitelist?: string[];
 
   /**
+   * Path to package.json file to update with external dependencies.
+   * @default 'package.json'
+   */
+  outputPackageJson?: string;
+
+  /**
+   * Path to take external dependencies' version from.
+   * @default 'package.json'
+   */
+  inputPackageJson?: string;
+
+  /**
    * Configuration for drop decorators plugin.
    */
   dropDecorators?: DropDecoratorsConfig;
@@ -41,10 +53,12 @@ export const createConfig = (config: Config): Config => {
   return {
     entryFile: config.entryFile,
     outDir: config.outDir,
-    format: config.format ?? 'cjs',
-    tsconfig: config.tsconfig ?? 'tsconfig.json',
+    format: config.format || 'cjs',
+    tsconfig: config.tsconfig || 'tsconfig.json',
     whitelist: config.whitelist,
     dropDecorators: config.dropDecorators,
-    tscAlias: config.tscAlias
+    tscAlias: config.tscAlias,
+    outputPackageJson: config.outputPackageJson,
+    inputPackageJson: config.inputPackageJson
   };
 };

@@ -17,8 +17,8 @@
     "noImplicitAny": true,
     "strictPropertyInitialization": false,
     "types": [
-      "@types/jest",
-      "node"
+      "node",
+      "vitest/globals"
     ],
     "moduleResolution": "Node",
     "esModuleInterop": true,
