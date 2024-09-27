@@ -8,7 +8,8 @@ import path from 'path';
 import { dropDecorators } from './dropDecorators.js';
 import dts from 'rollup-plugin-dts';
 import { cleanOutDir } from './cleanOutDir.js';
-import { includeExternalDeps } from './externalizeDeps';
+import { includeExternalDeps } from './externalizeDeps.js';
+import { nodeExternals } from 'rollup-plugin-node-externals';
 
 /**
  * Bundles typescript source project into a single file with types.
@@ -47,9 +48,20 @@ export const tsExtract = (opts: Config): RollupOptions[] => {
             declaration: false
           }
         }),
+        // mark everything as external
+        nodeExternals({
+          builtins: true,
+          deps: true,
+          devDeps: true
+        }),
         // @ts-ignore
         commonjs({}),
-        tscAlias(config.tscAlias)
+        tscAlias(config.tscAlias),
+        // include external dependencies in the output package.json
+        includeExternalDeps({
+          inputPackageJson: config.inputPackageJson as string,
+          outputPackageJson: config.outputPackageJson as string
+        })
       ]
     },
     {
@@ -63,6 +75,12 @@ export const tsExtract = (opts: Config): RollupOptions[] => {
       plugins: [
         // @ts-ignore
         json(),
+        // mark everything as external
+        nodeExternals({
+          builtins: true,
+          deps: true,
+          devDeps: true
+        }),
         dts({
           tsconfig: config.tsconfig,
           respectExternal: true
@@ -74,11 +92,7 @@ export const tsExtract = (opts: Config): RollupOptions[] => {
             path.basename(outputFilePath)
           ],
           config.outDir
-        ),
-        includeExternalDeps({
-          inputPackageJson: config.inputPackageJson as string,
-          outputPackageJson: config.outputPackageJson as string
-        })
+        )
       ]
     }
   ];

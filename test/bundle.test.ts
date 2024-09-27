@@ -9,7 +9,7 @@ describe('Rollup Bundle', () => {
       const dir = 'test/fixtures/dist';
       await fs.rm(dir, { recursive: true, force: true });
 
-      const outputPackageJson = 'test/fixtures/package.json';
+      const outputPackageJson = 'test/fixtures/dist-json/package.json';
 
       const config = tsExtract({
         entryFile: 'test/fixtures/index.ts',

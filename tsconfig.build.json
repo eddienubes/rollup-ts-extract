@@ -2,9 +2,9 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "dist",
-    "moduleResolution": "Node",
+    "moduleResolution": "NodeNext",
     "rootDir": "src",
-    "module": "CommonJS",
+    "module": "NodeNext",
     "target": "ES6"
   },
   "include": [
